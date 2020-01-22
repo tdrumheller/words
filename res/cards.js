@@ -29,6 +29,10 @@ function skip_click() {
 }
 
 function create_selectors() {
+    var div = document.getElementById('selectors');
+    div.appendChild(document.createElement('p').appendChild(document.createTextNode('Word Selection')));
+    add_break('selectors')
+
     _all_cb = document.createElement('input');
     _all_cb.type = 'checkbox';
     _all_cb.name = 'all cb';
@@ -39,9 +43,7 @@ function create_selectors() {
     var label = document.createElement('label');
     label.htmlFor = 'id';
     label.appendChild(document.createTextNode('All'));
-    add_break('selectors')
 
-    var div = document.getElementById('selectors');
     div.appendChild(_all_cb);
     div.appendChild(label);
     add_break('selectors')
@@ -98,8 +100,12 @@ function update_all_cb() {
     _all_cb.checked = all_checked
 }
 
-function create_mode() {   
+function create_mode() {
     var div = document.getElementById('mode')
+
+    div.appendChild(document.createElement('p').appendChild(document.createTextNode('Exercise type')));
+    add_break('mode')
+
     var mode = document.createElement('input');
     mode.type='radio';
     mode.id='mode_cont';
