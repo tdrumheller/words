@@ -1,12 +1,14 @@
 [
   {
-    "red": [
+    "color" : "red",
+    "words" : [
 	"look",
 	"like"
     ]
   },
   {
-    "white": [
+    "color" : "white",
+    "words" : [
 	"you"
     ]
   }
