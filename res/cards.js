@@ -3,13 +3,19 @@ var _skip = 0;
 var _data = [];
 var _all_cb;
 var _cbs = [];
+var _mode;
 
-$.getJSON('res/config.json', function( words ){
-  _data = words;
-  console.log(_data);
-  create_selectors();
+init();
 
-});
+function init() {
+    $.getJSON('res/config.json', 
+	      function( words ){
+		  _data = words;
+		  console.log(_data);
+		  create_selectors();
+		  create_mode()
+	      });
+}
 
 function ok_click() {
     console.log(_data);
@@ -90,4 +96,38 @@ function update_all_cb() {
 	    }
 	})
     _all_cb.checked = all_checked
+}
+
+function create_mode() {   
+    var div = document.getElementById('mode')
+    var mode = document.createElement('input');
+    mode.type='radio';
+    mode.id='mode_cont';
+    mode.name='mode'
+    mode.value='continuous';
+    mode.onchange=eval_mode
+    var label = document.createElement('label');
+    label.htmlFor = 'id';
+    label.appendChild(document.createTextNode('Continuous'));
+    div.appendChild(mode)
+    div.appendChild(label)
+    add_break('mode')
+
+    mode = document.createElement('input');
+    mode.type='radio';
+    mode.id='mode_once';
+    mode.name='mode'
+    mode.value='once_through';
+    mode.onchange=eval_mode
+    var label = document.createElement('label');
+    label.htmlFor = 'id';
+    label.appendChild(document.createTextNode('Once Through'));
+    div.appendChild(mode)
+    div.appendChild(label)
+    add_break('mode')
+}
+
+function eval_mode() {
+    mode = document.querySelector('input[name="mode"]:checked').value
+    console.log(mode)
 }
