@@ -1,0 +1,15 @@
+.table-grop {
+    display: table;
+    width: auto;
+}
+.table-row {
+    display: table-row;
+    width: auto;
+    clear: both;
+}
+
+.table-comp {
+    float: left;
+    display: table-column;
+    padding: 10px 25px
+}
