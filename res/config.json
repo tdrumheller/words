@@ -1,6 +1,7 @@
 [
   {
     "color" : "red",
+    "value" : "#ff0000",
     "words" : [
 	"look",
 	"like"
@@ -8,6 +9,7 @@
   },
   {
     "color" : "white",
+    "value" : "#ffffff",
     "words" : [
 	"you"
     ]
