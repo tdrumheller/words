@@ -4,6 +4,7 @@ var _data = [];
 var _all_cb;
 var _cbs = [];
 var _mode;
+var _working_list = [];
 
 init();
 
@@ -15,17 +16,20 @@ function init() {
 		  create_selectors();
 		  create_mode()
 	      });
+    start_state()
+
 }
 
 function ok_click() {
-    console.log(_data);
     _ok++;
     document.getElementById('ok_out').innerHTML = 'OK: ' + _ok.toString() + " times";
+    get_next()
 }
 
 function skip_click() {
     _skip++;
     document.getElementById('skip_out').innerHTML = 'SKIP: ' + _skip.toString() + " times";
+    get_next()
 }
 
 function create_selectors() {
@@ -38,6 +42,7 @@ function create_selectors() {
     _all_cb.name = 'all cb';
     _all_cb.value = 'ALL';
     _all_cb.id = 'all_cb';
+    _all_cb.checked = true;
     _all_cb.onchange=all_change
     
     var label = document.createElement('label');
@@ -62,6 +67,7 @@ function create_color_check(color) {
     color_check.value = color;
     color_check.id = color + '_cb';
     color_check.onchange=update_all_cb
+    color_check.checked = true;
 
     var label = document.createElement('label');
     label.htmlFor = 'id';
@@ -111,7 +117,9 @@ function create_mode() {
     mode.id='mode_cont';
     mode.name='mode'
     mode.value='continuous';
+    mode.checked = 'true'
     mode.onchange=eval_mode
+    _mode = 'continuous'
     var label = document.createElement('label');
     label.htmlFor = 'id';
     label.appendChild(document.createTextNode('Continuous'));
@@ -134,6 +142,62 @@ function create_mode() {
 }
 
 function eval_mode() {
-    mode = document.querySelector('input[name="mode"]:checked').value
-    console.log(mode)
+    _mode = document.querySelector('input[name="mode"]:checked').value
+    console.log(_mode)
+}
+
+function start() {
+    start_state();
+    document.getElementById('skip_out').innerHTML = 'SKIP: ' + _skip.toString() + " times";
+    document.getElementById('ok_out').innerHTML = 'OK: ' + _ok.toString() + " times";
+    create_wordlist();
+    get_next()
+    console.log(_working_list);
+    
+}
+
+function create_wordlist() {
+    _data.forEach(
+	function(item, index) {
+	    if (document.getElementById(item.color+'_cb').checked) {
+		var color = item.value;
+		item.words.forEach(
+		    function(item, index){
+			var tuple = {}
+			tuple.word = item;
+			tuple.color = color
+			_working_list.push(tuple)
+		    });
+	    }
+	});
+}
+
+function get_next() {
+    console.log (_mode)
+    var div = document.getElementById('card')
+    if(!_working_list.length) {
+	div.innerHTML = 'complete'
+	document.getElementById('skip_button').disabled = true;
+	document.getElementById('ok_button').disabled = true;
+	return 
+    }
+
+    var word_pair = {}
+    var element_id = Math.floor(Math.random() * _working_list.length);
+    div.innerHTML = element_id.toString() + " " + _working_list[element_id].word;
+    document.getElementById('skip_button').disabled = false;
+    document.getElementById('ok_button').disabled = false;
+
+    if(_mode == 'once_through') {
+	_working_list.splice(element_id, 1);
+	console.log(_working_list);
+    }
+}
+
+function start_state(){
+    _working_list = [];
+    _skip = 0;
+    _ok = 0;
+    document.getElementById('skip_button').disabled = true;
+    document.getElementById('ok_button').disabled = true;
 }
