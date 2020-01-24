@@ -5,6 +5,7 @@ var _all_cb;
 var _cbs = [];
 var _mode;
 var _working_list = [];
+var _show_color;
 
 init();
 
@@ -14,7 +15,8 @@ function init() {
 		  _data = words;
 		  console.log(_data);
 		  create_selectors();
-		  create_mode()
+		  create_mode();
+		  create_color_opt();
 	      });
     start_state()
 
@@ -141,9 +143,50 @@ function create_mode() {
     add_break('mode')
 }
 
+function create_color_opt() {
+    var div = document.getElementById('show_colors')
+
+    div.appendChild(document.createElement('p').appendChild(document.createTextNode('Show card colors')));
+    add_break('show_colors')
+
+    var but = document.createElement('input');
+    but.type='radio';
+    but.id='show_color';
+    but.name='show_color'
+    but.value=true;
+    but.checked = 'true'
+    but.onchange=eval_color
+    _show_color = true
+    var label = document.createElement('label');
+    label.htmlFor = 'id';
+    label.appendChild(document.createTextNode('Show Colors'));
+    div.appendChild(but)
+    div.appendChild(label)
+    add_break('show_colors')
+
+    but = document.createElement('input');
+    but.type='radio';
+    but.id='no_color';
+    but.name='show_color'
+    but.value=false;
+    but.onchange=eval_color
+    var label = document.createElement('label');
+    label.htmlFor = 'id';
+    label.appendChild(document.createTextNode('No Card Color'));
+    div.appendChild(but)
+    div.appendChild(label)
+    add_break('show_colors')
+}
+
+
 function eval_mode() {
     _mode = document.querySelector('input[name="mode"]:checked').value
     console.log(_mode)
+}
+
+function eval_color() {
+    _show_color = document.querySelector('input[name="show_color"]:checked').value
+    console.log(_show_color)
 }
 
 function start() {
@@ -176,7 +219,7 @@ function get_next() {
     console.log (_mode)
     var div = document.getElementById('card')
     if(!_working_list.length) {
-	div.innerHTML = 'complete'
+	draw_card('#ffffff', '--complete--');
 	document.getElementById('skip_button').disabled = true;
 	document.getElementById('ok_button').disabled = true;
 	return 
@@ -184,7 +227,9 @@ function get_next() {
 
     var word_pair = {}
     var element_id = Math.floor(Math.random() * _working_list.length);
-    div.innerHTML = element_id.toString() + " " + _working_list[element_id].word;
+    word_pair = _working_list[element_id];
+    draw_card(word_pair.color, word_pair.word);
+
     document.getElementById('skip_button').disabled = false;
     document.getElementById('ok_button').disabled = false;
 
@@ -200,4 +245,16 @@ function start_state(){
     _ok = 0;
     document.getElementById('skip_button').disabled = true;
     document.getElementById('ok_button').disabled = true;
+}
+
+function draw_card(color, text) {
+    var div = document.getElementById('card');
+    if (_show_color) {
+	div.style.backgroundColor=color;
+    }
+    else {
+	div.style.backgroundColor="#ffffff";
+
+    }
+    div.innerHTML = text;
 }
