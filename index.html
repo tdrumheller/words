@@ -6,34 +6,31 @@
     <link rel='stylesheet' type='text/css' href='res/style.css'>
   </head>
   <body>
-
-    <div class="table-group">
-      <div class="table-row">
-	<div id='selectors' class="table-comp"></div>
-	<div id='mode' class='table-comp'></div>
-	<div id='show_colors' class='table-comp'></div>
+    <div class="content">
+      <div class="table-group">
+	<div class="table-row">
+	  <div id='selectors' class="table-comp"></div>
+	  <div id='mode' class='table-comp'></div>
+	  <div id='show_colors' class='table-comp'></div>
+	</div>
       </div>
-    </div>
-    <div class="table-group">
-      <div class="tabel-row">
-	<button id='start_button' onclick=start() class="table-comp">Start</button>
+      <div class="start-container">
+	<div class="start-content">
+	  <button id='start_button' onclick=start() class='button'>Start</button>
+	</div>
       </div>
-    </div>
-    <div class="table-group">
-      <div class="tabel-row">
-	<div id='card' class="table-comp"></div>
+      <div id='card' class="card"></div>
+      <div class="container1">
+	<div class="cen-content1">
+	  <button id='ok_button' onclick='ok_click()' class="button">GOT</button>
+	</div>
+	<div class="cen-content1">
+	  <button id='skip_button' onclick='skip_click()' class="button">SKIP</button>
+	</div>
       </div>
-    </div>
-    <div class="table-group">
-      <div class="tabel-row">
-	<button id='ok_button' onclick='ok_click()' class="table-comp">GOT</button>
-	<button id='skip_button' onclick='skip_click()' class="table-comp">SKIP</button>
-      </div>
-    </div>
-    <div class="table-group">
-      <div class="table-row">
-	<div id='ok_out' class="table-comp">GOT: 0 </div>
-	<div id='skip_out' class="table-comp">SKIP: 0 </div>
+      <div class="container1">
+	<div id='ok_out' class="cen-content1" >GOT: 0 </div>
+	<div id='skip_out' class="cen-content1">SKIP: 0 </div>
       </div>
     </div>
 
