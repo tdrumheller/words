@@ -249,12 +249,11 @@ function start_state(){
 
 function draw_card(color, text) {
     var div = document.getElementById('card');
-    if (_show_color) {
+    if (_show_color == true) {
 	div.style.backgroundColor=color;
     }
     else {
 	div.style.backgroundColor="#ffffff";
-
     }
     div.innerHTML = text;
 }
