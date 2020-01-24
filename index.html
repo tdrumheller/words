@@ -8,19 +8,34 @@
   <body>
 
     <div class="table-group">
-      <div class='table-row'>
-	<div id='selectors' class='table-comp'></div>
+      <div class="table-row">
+	<div id='selectors' class="table-comp"></div>
 	<div id='mode' class='table-comp'></div>
 	<div id='show_colors' class='table-comp'></div>
       </div>
     </div>
-    <button id='start_button' onclick=start()>Start</button>
-    <div id='card'></div>
-    <button id='ok_button' onclick='ok_click()'>GOT</button>
-    <button id='skip_button' onclick='skip_click()'>SKIP</button>
-    <div class
-    <div id='ok_out'>GOT: 0 </div>
-    <div id='skip_out'>SKIP: 0 </div>
+    <div class="table-group">
+      <div class="tabel-row">
+	<button id='start_button' onclick=start() class="table-comp">Start</button>
+      </div>
+    </div>
+    <div class="table-group">
+      <div class="tabel-row">
+	<div id='card' class="table-comp"></div>
+      </div>
+    </div>
+    <div class="table-group">
+      <div class="tabel-row">
+	<button id='ok_button' onclick='ok_click()' class="table-comp">GOT</button>
+	<button id='skip_button' onclick='skip_click()' class="table-comp">SKIP</button>
+      </div>
+    </div>
+    <div class="table-group">
+      <div class="table-row">
+	<div id='ok_out' class="table-comp">GOT: 0 </div>
+	<div id='skip_out' class="table-comp">SKIP: 0 </div>
+      </div>
+    </div>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
