@@ -1,15 +1,16 @@
 .content {
-    max-width: 500px;
+    max-width: 900px;
     margin: auto;
     padding: 10px;
+    font-size: 20px;
 }
 .table-group {
     display: table;
-    width: 100%;
+    width: 900px;
 }
 .table-row {
     display: table-row;
-    width: 100%;
+    width: 900px;
     clear: both;
 }
 
