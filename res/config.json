@@ -3,15 +3,22 @@
     "color" : "red",
     "value" : "#ff0000",
     "words" : [
-	"look",
-	"like"
     ]
   },
   {
     "color" : "white",
     "value" : "#ffffff",
     "words" : [
-	"you"
+	"and",
+	"I",
+	"go",
+	"can",
+	"he",
+	"a",
+	"in",
+	"at",
+	"is",
+	"on"
     ]
   }
 ]
