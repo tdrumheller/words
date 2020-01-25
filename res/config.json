@@ -3,15 +3,48 @@
     "color" : "red",
     "value" : "#ff0000",
     "words" : [
+    	"dog",
+	"it",
+	"like",
 	"look",
-	"like"
+	"my",
+	"see",
+	"the",
+	"to",
+	"up",
+	"you"
     ]
   },
   {
     "color" : "white",
     "value" : "#ffffff",
     "words" : [
-	"you"
+	"and",
+	"I",
+	"go",
+	"can",
+	"he",
+	"a",
+	"in",
+	"at",
+	"is",
+	"on"
     ]
-  }
+  },
+  {
+    "color": "blue",
+    "value": "#2797bf",
+    "words": [
+    	"but",
+	"dad",
+	"do",
+	"all",
+	"for",
+	"get",
+	"had",
+	"love",
+	"no",
+	"was"
+    ]
+  }   
 ]
