@@ -88,13 +88,13 @@ function add_break(id) {
 }
 
 function all_change() {
-    if(_all_cb.checked) {
-	_cbs.forEach(
-	    function(item, index) {
-		item.checked = true;
-	    }
-	);
-    }
+    var nv = _all_cb.checked;
+
+    _cbs.forEach(
+	function(item, index) {
+	    item.checked = _all_cb.checked;
+	}
+    );
 }
 
 function update_all_cb() {
