@@ -62,5 +62,21 @@
 	"so",
 	"we"
     ]
+  },
+  {
+    "color": "orange",
+    "value": "#de6f14",
+    "words": [
+    	"are",
+	"be",
+	"big",
+	"did",
+	"his",
+	"stop",
+	"they",
+	"two",
+	"said",
+	"yes"
+    ]
   }   
 ]

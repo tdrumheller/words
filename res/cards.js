@@ -194,7 +194,7 @@ function start() {
     document.getElementById('skip_out').innerHTML = 'SKIP: ' + _skip.toString() + " times";
     document.getElementById('ok_out').innerHTML = 'OK: ' + _ok.toString() + " times";
     create_wordlist();
-    get_next()
+    get_next();
     console.log(_working_list);
     
 }
@@ -206,18 +206,18 @@ function create_wordlist() {
 		var color = item.value;
 		item.words.forEach(
 		    function(item, index){
-			var tuple = {}
+			var tuple = {};
 			tuple.word = item;
-			tuple.color = color
-			_working_list.push(tuple)
+			tuple.color = color;
+			_working_list.push(tuple);
 		    });
 	    }
 	});
 }
 
 function get_next() {
-    console.log (_mode)
-    var div = document.getElementById('card')
+    console.log (_mode);
+    var div = document.getElementById('card');
     if(!_working_list.length) {
 	draw_card('#ffffff', '--complete--');
 	document.getElementById('skip_button').disabled = true;
@@ -225,7 +225,7 @@ function get_next() {
 	return 
     }
 
-    var word_pair = {}
+    var word_pair = {};
     var element_id = Math.floor(Math.random() * _working_list.length);
     word_pair = _working_list[element_id];
     draw_card(word_pair.color, word_pair.word);
