@@ -78,5 +78,21 @@
 	"said",
 	"yes"
     ]
-  }   
+  },
+  {
+    "color": "gold",
+    "value": "#edc147",
+    "words": [
+    	"good",
+	"got",
+	"have",
+	"him",
+	"little",
+	"old",
+	"that",
+	"too",
+	"went",
+	"will"
+    ]
+  }
 ]
