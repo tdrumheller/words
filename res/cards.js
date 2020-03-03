@@ -182,11 +182,13 @@ function create_color_opt() {
 function eval_mode() {
     _mode = document.querySelector('input[name="mode"]:checked').value
     console.log(_mode)
+    start()
 }
 
 function eval_color() {
     _show_color = document.querySelector('input[name="show_color"]:checked').value
     console.log(_show_color)
+    start()
 }
 
 function start() {
