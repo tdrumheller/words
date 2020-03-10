@@ -154,10 +154,10 @@ function create_color_opt() {
     but.type='radio';
     but.id='show_color';
     but.name='show_color';
-    but.value=true;
+    but.value=1;
     but.checked = 'true';
     but.onchange=eval_color;
-    _show_color = true;
+    _show_color = 1;
     var label = document.createElement('label');
     label.htmlFor = 'id';
     label.appendChild(document.createTextNode('Show Colors'));
@@ -169,9 +169,9 @@ function create_color_opt() {
     but.type='radio';
     but.id='no_color';
     but.name='show_color';
-    but.value=false;
+    but.value=0;
     but.onchange=eval_color;
-    var label = document.createElement('label');
+    label = document.createElement('label');
     label.htmlFor = 'id';
     label.appendChild(document.createTextNode('No Card Color'));
     div.appendChild(but);
@@ -252,7 +252,7 @@ function start_state(){
 
 function draw_card(color, text) {
     var div = document.getElementById('card');
-    if (_show_color == true) {
+    if (_show_color == 1) {
 	div.style.backgroundColor=color;
     }
     else {
