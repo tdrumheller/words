@@ -6,6 +6,8 @@ var _cbs = [];
 var _mode;
 var _working_list = [];
 var _show_color;
+var _cur_color;
+var _cur_text;
 
 init();
 
@@ -31,6 +33,9 @@ function ok_click() {
 function skip_click() {
     _skip++;
     document.getElementById('skip_out').innerHTML = 'SKIP: ' + _skip.toString() + " times";
+    var li = document.createElement('li');
+    li.appendChild(draw_color_label(_cur_color, _cur_text));
+    document.getElementById('skip_list').appendChild(li);
     get_next();
 }
 
@@ -246,8 +251,14 @@ function start_state(){
     _working_list = [];
     _skip = 0;
     _ok = 0;
+    _cur_color = '';
+    _cur_text = '';
     document.getElementById('skip_button').disabled = true;
     document.getElementById('ok_button').disabled = true;
+    skip_list = document.getElementById('skip_list');
+	while(skip_list.hasChildNodes()) {
+	    skip_list.removeChild(skip_list.firstChild);
+    }
 }
 
 function draw_card(color, text) {
@@ -258,6 +269,8 @@ function draw_card(color, text) {
     else {
 	div.style.backgroundColor="#ffffff";
     }
+    _cur_color = color
+    _cur_text = text
     div.innerHTML = text;
 }
 
