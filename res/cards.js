@@ -57,11 +57,11 @@ function create_selectors() {
 
     for (var i = 0; i < _data.length; i++) {
 	console.log(_data[i]);
-	_cbs.push(create_color_check(_data[i].color));
+	_cbs.push(create_color_check(_data[i].color, _data[i].value));
     }
 }
 
-function create_color_check(color) {
+function create_color_check(color, color_value) {
     var color_check = document.createElement('input');
     color_check.type = 'checkbox';
     color_check.name = color + '_cb';
@@ -72,7 +72,7 @@ function create_color_check(color) {
 
     var label = document.createElement('label');
     label.htmlFor = 'id';
-    label.appendChild(document.createTextNode(color));
+    label.appendChild(draw_color_label(color_value, color));
 
     var div = document.getElementById('selectors');
     div.appendChild(color_check);
@@ -259,4 +259,11 @@ function draw_card(color, text) {
 	div.style.backgroundColor="#ffffff";
     }
     div.innerHTML = text;
+}
+
+function draw_color_label(color, text) {
+    var tag = document.createElement('span')
+    tag.innerHTML = '<span class="border-label" style="background-color:' + color + '">'+ text + '</span>'
+    return tag
+    
 }
