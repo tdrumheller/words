@@ -6,6 +6,8 @@ var _cbs = [];
 var _mode;
 var _working_list = [];
 var _show_color;
+var _cur_color;
+var _cur_text;
 
 init();
 
@@ -31,6 +33,9 @@ function ok_click() {
 function skip_click() {
     _skip++;
     document.getElementById('skip_out').innerHTML = 'SKIP: ' + _skip.toString() + " times";
+    var li = document.createElement('li');
+    li.appendChild(draw_color_label(_cur_color, _cur_text));
+    document.getElementById('skip_list').appendChild(li);
     get_next();
 }
 
@@ -57,11 +62,11 @@ function create_selectors() {
 
     for (var i = 0; i < _data.length; i++) {
 	console.log(_data[i]);
-	_cbs.push(create_color_check(_data[i].color));
+	_cbs.push(create_color_check(_data[i].color, _data[i].value));
     }
 }
 
-function create_color_check(color) {
+function create_color_check(color, color_value) {
     var color_check = document.createElement('input');
     color_check.type = 'checkbox';
     color_check.name = color + '_cb';
@@ -72,7 +77,7 @@ function create_color_check(color) {
 
     var label = document.createElement('label');
     label.htmlFor = 'id';
-    label.appendChild(document.createTextNode(color));
+    label.appendChild(draw_color_label(color_value, color));
 
     var div = document.getElementById('selectors');
     div.appendChild(color_check);
@@ -116,31 +121,32 @@ function create_mode() {
 
     var mode = document.createElement('input');
     mode.type='radio';
-    mode.id='mode_cont';
-    mode.name='mode';
-    mode.value='continuous';
-    mode.checked = 'true';
-    mode.onchange=eval_mode;
-    _mode = 'continuous';
-    var label = document.createElement('label');
-    label.htmlFor = 'id';
-    label.appendChild(document.createTextNode('Continuous'));
-    div.appendChild(mode);
-    div.appendChild(label);
-    add_break('mode');
-
-    mode = document.createElement('input');
-    mode.type='radio';
     mode.id='mode_once';
     mode.name='mode';
+    mode.checked = 'true';
     mode.value='once_through';
     mode.onchange=eval_mode;
+    _mode = 'once_through';
     var label = document.createElement('label');
     label.htmlFor = 'id';
     label.appendChild(document.createTextNode('Once Through'));
     div.appendChild(mode);
     div.appendChild(label);
     add_break('mode');
+
+    mode = document.createElement('input');
+    mode.type='radio';
+    mode.id='mode_cont';
+    mode.name='mode';
+    mode.value='continuous';
+    mode.onchange=eval_mode;
+    label = document.createElement('label');
+    label.htmlFor = 'id';
+    label.appendChild(document.createTextNode('Continuous'));
+    div.appendChild(mode);
+    div.appendChild(label);
+    add_break('mode');
+
 }
 
 function create_color_opt() {
@@ -153,10 +159,10 @@ function create_color_opt() {
     but.type='radio';
     but.id='show_color';
     but.name='show_color';
-    but.value=true;
+    but.value=1;
     but.checked = 'true';
     but.onchange=eval_color;
-    _show_color = true;
+    _show_color = 1;
     var label = document.createElement('label');
     label.htmlFor = 'id';
     label.appendChild(document.createTextNode('Show Colors'));
@@ -168,9 +174,9 @@ function create_color_opt() {
     but.type='radio';
     but.id='no_color';
     but.name='show_color';
-    but.value=false;
+    but.value=0;
     but.onchange=eval_color;
-    var label = document.createElement('label');
+    label = document.createElement('label');
     label.htmlFor = 'id';
     label.appendChild(document.createTextNode('No Card Color'));
     div.appendChild(but);
@@ -245,17 +251,32 @@ function start_state(){
     _working_list = [];
     _skip = 0;
     _ok = 0;
+    _cur_color = '';
+    _cur_text = '';
     document.getElementById('skip_button').disabled = true;
     document.getElementById('ok_button').disabled = true;
+    skip_list = document.getElementById('skip_list');
+	while(skip_list.hasChildNodes()) {
+	    skip_list.removeChild(skip_list.firstChild);
+    }
 }
 
 function draw_card(color, text) {
     var div = document.getElementById('card');
-    if (_show_color == true) {
+    if (_show_color == 1) {
 	div.style.backgroundColor=color;
     }
     else {
 	div.style.backgroundColor="#ffffff";
     }
+    _cur_color = color
+    _cur_text = text
     div.innerHTML = text;
+}
+
+function draw_color_label(color, text) {
+    var tag = document.createElement('span')
+    tag.innerHTML = '<span class="border-label" style="background-color:' + color + '">'+ text + '</span>'
+    return tag
+    
 }
