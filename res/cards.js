@@ -116,31 +116,32 @@ function create_mode() {
 
     var mode = document.createElement('input');
     mode.type='radio';
-    mode.id='mode_cont';
-    mode.name='mode';
-    mode.value='continuous';
-    mode.checked = 'true';
-    mode.onchange=eval_mode;
-    _mode = 'continuous';
-    var label = document.createElement('label');
-    label.htmlFor = 'id';
-    label.appendChild(document.createTextNode('Continuous'));
-    div.appendChild(mode);
-    div.appendChild(label);
-    add_break('mode');
-
-    mode = document.createElement('input');
-    mode.type='radio';
     mode.id='mode_once';
     mode.name='mode';
+    mode.checked = 'true';
     mode.value='once_through';
     mode.onchange=eval_mode;
+    _mode = 'once_through';
     var label = document.createElement('label');
     label.htmlFor = 'id';
     label.appendChild(document.createTextNode('Once Through'));
     div.appendChild(mode);
     div.appendChild(label);
     add_break('mode');
+
+    mode = document.createElement('input');
+    mode.type='radio';
+    mode.id='mode_cont';
+    mode.name='mode';
+    mode.value='continuous';
+    mode.onchange=eval_mode;
+    label = document.createElement('label');
+    label.htmlFor = 'id';
+    label.appendChild(document.createTextNode('Continuous'));
+    div.appendChild(mode);
+    div.appendChild(label);
+    add_break('mode');
+
 }
 
 function create_color_opt() {
