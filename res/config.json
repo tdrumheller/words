@@ -142,5 +142,21 @@
 	"there",
 	"very"
     ]
+  },
+  {
+    "color": "pink",
+    "value": "#ffc0cb",
+    "words": [
+    	"by",
+	"came",
+	"cat",
+	"could",
+	"eat",
+	"find",
+	"girl",
+	"house",
+	"of",
+	"want"
+    ]
   }
 ]
